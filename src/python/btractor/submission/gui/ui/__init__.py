@@ -1,10 +1,12 @@
 #-*-coding:utf-8-*-
 """
-@package bcore.procssing.tractor.submission.gui.ui
+@package btractor.submission.gui.ui
 @brief Contains PySide ui files only
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 
 from .submit_ui import *
 from .chunk_ui import *

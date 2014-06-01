@@ -4,24 +4,22 @@
 @brief Submission of maya scenes for rendering or for performing batch operations
 
 @note This module needs to be usable anywhere, and may not rely on being run from the nuke host application
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['MayaBatchTaskGenerator', 'MayaRenderTaskGenerator']
 
-from bcore.core.kvstore import KeyValueStoreSchema
+from bkvstore import KeyValueStoreSchema
 
 from .cmdbase import TractorCmdGeneratorBase
-from .types import (
-                    JobGenerator,
-                    FrameSequenceGenerator
-                  )
-from .. import (
-                    Task,
-                    Cmd,
-                    Tags,
-                  )
+from .types import (JobGenerator,
+                    FrameSequenceGenerator)
+from .. import (Task,
+                Cmd,
+                Tags)
 import copy
-from bcore.path import Path
+from butility import Path
 
 
 class MayaTaskBase(TractorCmdGeneratorBase):

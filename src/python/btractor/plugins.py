@@ -1,26 +1,25 @@
 #-*-coding:utf-8-*-
 """
-@package btractor.components
+@package btractor.plugins
 @brief Implements interfaces in btractor.interfaces
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['TractorProcessDataProvider', 'TractorNodeGeneratorChainProvider']
 
 import os
 
-from .interfaces import (
-                            ITractorProcessDataProvider,
-                            ITractorNodeGeneratorChainProvider
-                        )
-from .alf.generators import (
-                                TractorCmdGeneratorBase,
-                            )
+import bapp
+from .interfaces import (ITractorProcessDataProvider,
+                         ITractorNodeGeneratorChainProvider )
+from .alf.generators import TractorCmdGeneratorBase
 from .alf.generators import NodeGeneratorChainBase
-from bcore.core.kvstore import KeyValueStoreProvider
+from bkvstore import KeyValueStoreProvider
 
 
-class TractorProcessDataProvider(ITractorProcessDataProvider, Plugin):
+class TractorProcessDataProvider(ITractorProcessDataProvider, bapp.plugin_type()):
     """Implements the data provider interface, works together with TractorDelegateMixin and TractorCmdGeneratorBase"""
     __slots__ = ()
     
@@ -42,12 +41,12 @@ class TractorProcessDataProvider(ITractorProcessDataProvider, Plugin):
 # end class TractorProcessDataProvider
 
 
-class TractorNodeGeneratorChainProvider(ITractorNodeGeneratorChainProvider, Plugin):
+class TractorNodeGeneratorChainProvider(ITractorNodeGeneratorChainProvider, bapp.plugin_type()):
     """Provide nodes of the required type using services"""
     __slots__ = ()
 
     def chains(self):
-        return new_services(NodeGeneratorChainBase)
+        return bapp.main().context().new_instance(NodeGeneratorChainBase)
 
 # end class TractorNodeGeneratorChainProvider
 

@@ -3,12 +3,14 @@
 @package btractor.alf.base
 @brief Base classes for use with tractor
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['AlfOperatorMeta', 'AlfOperatorBase', 'AlfTreeOperator']
 
-import bcore
-from bcore.utility import GraphIteratorBase
+from butility import (GraphIterator,
+                      Meta)
 
 # ==============================================================================
 ## @name Alf Base Classes
@@ -16,7 +18,7 @@ from bcore.utility import GraphIteratorBase
 ## @{
 
 
-class AlfOperatorMeta(bcore.MetaBase):
+class AlfOperatorMeta(Meta):
     """Metaclass setting up descriptors for accessing stored values based on the schema."""
     __slots__ = ()
     
@@ -105,7 +107,7 @@ class AlfOperatorMeta(bcore.MetaBase):
             # end for each attr
         #end have schema
         
-        return bcore.MetaBase.__new__(metacls, name, bases, clsdict)
+        return Meta.__new__(metacls, name, bases, clsdict)
 
 # end class AlfOperatorMeta
 
@@ -196,7 +198,7 @@ class AlfOperatorBase(object):
 # end class AlfOperatorBase
 
 
-class AlfTreeOperator(AlfOperatorBase, GraphIteratorBase):
+class AlfTreeOperator(AlfOperatorBase, GraphIterator):
     """An operator that sets up a tree of items.
     As those items can refer to each other, there is a relation between id and refersto tags of commands and/or
     tasks"""
@@ -207,7 +209,7 @@ class AlfTreeOperator(AlfOperatorBase, GraphIteratorBase):
         return "%s(title='%s')" % (type(self).__name__, self.title)
     
     # -------------------------
-    ## @name GraphIteratorBase Implementation
+    ## @name GraphIterator Implementation
     # @{
     
     def _predecessors(self, node):
@@ -218,7 +220,7 @@ class AlfTreeOperator(AlfOperatorBase, GraphIteratorBase):
             return node.subtasks
         return list()
     
-    ## -- End GraphIteratorBase Implementation -- @}
+    ## -- End GraphIterator Implementation -- @}
     
     # -------------------------
     ## @name Interface

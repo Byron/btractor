@@ -3,32 +3,28 @@
 @package btractor.submission.gui.widgets
 @brief A selection of widgets to deal with submitting jobs
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['TractorSubmissionWidget', 'TractorSelectorWidget', 'TractorMessageDialog', 
            'TractorGeneratorChainPropertiesWidget']
 
-
-import bcore
-from bcore.gui.widgets import PluginSelectorWidget
-from bcore.gui import remove_widget_children
-from PySide import (
-                        QtGui,
-                        QtCore
-                    )
+import logging
+import bapp
+from bqt.widgets import PluginSelectorWidget
+from bqt import remove_widget_children
+from PySide import (QtGui,
+                    QtCore )
 from btractor.alf import Job
-from btractor.alf.generators import (
-                                                    JobGenerator,
-                                                    FrameSequenceGenerator,
-                                                 )
-from btractor.submission import (
-                                                TractorSubmitter,
-                                                TractorJobID
-                                            )
+from btractor.alf.generators import (JobGenerator,
+                                     FrameSequenceGenerator)
+from btractor.submission import (TractorSubmitter,
+                                 TractorJobID)
 from . import ui
 from .properties import GeneratorPropertiesWidgetBase
 
-log = service(bcore.ILog).new('btractor.submission.gui')
+log = logging.getLogger('btractor.submission.gui')
 
 
 class TractorSubmissionWidget(QtGui.QWidget):
@@ -167,7 +163,7 @@ class TractorGeneratorChainPropertiesWidget(QtGui.QWidget):
         @param context KeyValueStore retrieved from the given chain, or None to clear this instance.
         @return the chain's context we are representing, as retrieved by chain.default_context()"""
         self._clear_widgets()
-        widget_types = bcore.environment.classes(GeneratorPropertiesWidgetBase)
+        widget_types = bapp.main().context().types(GeneratorPropertiesWidgetBase)
         self._context = context
         
         if chain is None or context is None:

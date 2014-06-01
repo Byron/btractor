@@ -1,0 +1,5 @@
+packages:
+  nosetests:
+    # make sure a wrapped nose knows where to find us (including our dependencies)
+    requires:
+      - btractor

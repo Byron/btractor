@@ -3,13 +3,17 @@
 @package btractor.interfaces
 @brief Interfaces dealing with job submission using tractor data structures
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['ITractorProcessDataProvider']
 
-import bcore
+from butility import (abstractmethod,
+                      Interface)
 
-class ITractorProcessDataProvider(bcore.InterfaceBase):
+
+class ITractorProcessDataProvider(Interface):
     """An interface to allow access to tractor specific data for processes launched on the farm.
     
     Clients should use this interface to obtain additional information about their execution context, such 
@@ -21,7 +25,7 @@ class ITractorProcessDataProvider(bcore.InterfaceBase):
     ## @name Interface
     # @{
     
-    @bcore.abstractmethod
+    @abstractmethod
     def data(self):
         """@return the data object tractor received for this process. It is any kind of python data structure.
         It will be a kvstore compatible struture that should only be accessed with the corresponding
@@ -29,13 +33,13 @@ class ITractorProcessDataProvider(bcore.InterfaceBase):
         If there is no data, None will be returned.
         @see as_kvstore()"""
         
-    @bcore.abstractmethod
+    @abstractmethod
     def as_kvstore(self):
         """@return a KeyValueStoreProvider initialized with the value of data(), or None if there is not data 
         available
         @note for convenience, this is implemneted here"""
     
-    @bcore.abstractmethod    
+    @abstractmethod    
     def set_progress(self, progress):
         """Communicate the given progress to tractor
         @param progress a value from 0 to 100, indicating the progress in percent. The value is unchecked, as
@@ -46,7 +50,7 @@ class ITractorProcessDataProvider(bcore.InterfaceBase):
 # end class TractorInputData
 
 
-class ITractorNodeGeneratorChainProvider(bcore.InterfaceBase):
+class ITractorNodeGeneratorChainProvider(Interface):
     """An interface allowing to obtain a list of Plugin-Instances deriving from the NodeGeneratorChainBase type
     @note Override this implementation if you need anything more specific than all services that implement this
     base type"""
@@ -56,7 +60,7 @@ class ITractorNodeGeneratorChainProvider(bcore.InterfaceBase):
     ## @name Interface
     # @{
     
-    @bcore.abstractmethod
+    @abstractmethod
     def chains(self):
         """@return a list of chains implementing the NodeGeneratorChainBase interface"""
     

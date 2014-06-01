@@ -1,21 +1,23 @@
 #-*-coding:utf-8-*-
 """
-@package bcore.tests.processing.tractor.alf.test_base
+@package btractor.tests.alf.test_base
 @brief tests for btractor.alf
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 
 import sys
 from StringIO import StringIO
 
 
-from ..base import TractorTestCaseBase
+from ..base import TractorTestCase
 
 from btractor.alf import *
 
 
-class TestCommands(TractorTestCaseBase):
+class TestCommands(TractorTestCase):
     """tests for alf commands"""
     __slots__ = ()
 

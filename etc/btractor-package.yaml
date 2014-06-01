@@ -1,0 +1,9 @@
+packages:
+  btractor:
+    trees:
+      - '{settings-files.btractor-package.dirname.dirname}'
+    requires:
+      - bcore
+    environment:
+      variables:
+        PYTHONPATH: src/python

@@ -3,27 +3,29 @@
 @package btractor.submission.gui.controller
 @brief Controllers to combine widgets into more complex user interfaces
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['TractorSubmissionController']
 
-from PySide import (
-                        QtGui,
-                        QtCore
-                    )
+import logging
 
-import bcore
-from btractor.alf.generators import (
-                                                        JobGenerator,
-                                                        MultiJobGenerator,
-                                                  )
+import bapp
+from PySide import (QtGui,
+                    QtCore )
+
+from btractor.alf.generators import (JobGenerator,
+                                     MultiJobGenerator,)
 
 from . import widgets
 from .ctrl_single_ui import Ui_SingleJob
 
 from .widgets import TractorMessageDialog
 
-log = service(bcore.ILog).new('btractor.submission.gui.controller')
+from btractor import ITractorNodeGeneratorChainProvider
+
+log = logging.getLogger('btractor.submission.gui.controller')
 
 
 class TractorSubmissionController(QtGui.QWidget):
@@ -47,7 +49,7 @@ class TractorSubmissionController(QtGui.QWidget):
         self.setWindowTitle('%s (%s)' % (self.name, self.version))
         chains = list()
         JobGeneratorType = self._multifile_mode() and MultiJobGenerator or JobGenerator
-        for chain in new_service(bcore.ITractorNodeGeneratorChainProvider).chains():
+        for chain in bapp.main().context().new_instance(ITractorNodeGeneratorChainProvider).chains():
             chains.append(chain.prepend_head(JobGeneratorType()))
             if self._multifile_mode():
                 # by default, we are in single-job mode - one job per button press

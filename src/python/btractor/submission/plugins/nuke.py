@@ -1,21 +1,22 @@
 #-*-coding:utf-8-*-
 """
-@package btractor.submission.components.nuke
+@package btractor.submission.plugins.nuke
 @brief Job Submission plugins
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['NukeRenderTasksChain']
 
 
-from ...alf.generators import (
-                                NodeGeneratorChainBase,
-                                FrameSequenceGenerator,
-                                NukeRenderTaskGenerator
-                              )
+import bapp
+from ...alf.generators import (NodeGeneratorChainBase,
+                               FrameSequenceGenerator,
+                               NukeRenderTaskGenerator )
 
 
-class NukeRenderTasksChain(NodeGeneratorChainBase, Plugin):
+class NukeRenderTasksChain(NodeGeneratorChainBase, bapp.plugin_type()):
     """Represents a generator chain which is preconfigured to support frame chunking as and simple rendering
     of all enabled write nodes in a script.
     

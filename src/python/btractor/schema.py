@@ -3,11 +3,13 @@
 @package btractor.schema
 @brief tractor-related schemas for general use
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['submitter_schema']
 
-from bcore.core.kvstore import KeyValueStoreSchema
+from bkvstore import KeyValueStoreSchema
 
 tractor_schema = KeyValueStoreSchema('tractor', { 'submission' : { 'priority' : dict( low = 0,
                                                                                          normal = 1,

@@ -1,22 +1,24 @@
 #-*-coding:utf-8-*-
 """
-@package bcore.tests.processing.tractor.alf.test_generators
+@package btractor.tests.alf.test_generators
 @brief tests for btractor.alf.generators
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 
 import sys
 from StringIO import StringIO
 
 
-from ..base import TractorTestCaseBase
+from ..base import TractorTestCase
 
 from btractor.alf import AlfSerializer
 from btractor.alf.generators import *
 
 
-class TestGenerators(TractorTestCaseBase):
+class TestGenerators(TractorTestCase):
     """tests for alf task generators"""
     __slots__ = ()
     

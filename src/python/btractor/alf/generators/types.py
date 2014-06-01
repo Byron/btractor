@@ -3,28 +3,24 @@
 @package btractor.alf.generators.types
 @brief Implements actual types using the base classes
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['JobGenerator', 'MultiJobGenerator', 'FrameSequenceGenerator']
 
-import bcore
-from bcore.path import Path
-from bcore.core.kvstore import (
-                                KeyValueStoreSchema,
-                                PathList
-                            )
-from bcore.utility import GraphIteratorBase
+from butility import (Path,
+                      abstractmethod)
+from bkvstore import (KeyValueStoreSchema,
+                      PathList)
+from butility import GraphIterator
 
-from ..types import (
-                        StringChoice,
-                        Job,
-                        Task
-                    )
-from .base import (
-                            NodeGeneratorBase,
-                            SequenceGeneratorBase,
-                            ValueSequenceGeneratorBase
-                        )
+from ..types import (StringChoice,
+                     Job,
+                     Task)
+from .base import (NodeGeneratorBase,
+                   SequenceGeneratorBase,
+                   ValueSequenceGeneratorBase)
                             
 
 
@@ -165,7 +161,7 @@ class MultiStringGeneratorBase(ValueSequenceGeneratorBase):
     # Useful to override certain class behavior
     # @{
     
-    @bcore.abstractmethod
+    @abstractmethod
     def _set_strings_to_context(self, context, strings):
         """Called during _tree_iterator() evaluation to set the given list of strings into the 
         context according to the subclasses particular schema.
@@ -192,7 +188,7 @@ class MultiStringGeneratorBase(ValueSequenceGeneratorBase):
                 yield tree
         # end for each job file
     
-    @bcore.abstractmethod
+    @abstractmethod
     def chunks(self, context):
         """@return A list of chunks of lists of strings to handle. Each chunk returned here will be worth 
         one tree iterator iteration. Its also valid to return a list of individual items.

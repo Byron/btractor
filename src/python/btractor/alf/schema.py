@@ -3,14 +3,15 @@
 @package btractor.alf.schema
 @brief Contains schemas for tractor related types
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['Assignments', 'Tasks', 'Tags', 'ReturnCodes', 'Commands', 'TaskTitleRef', 'IDRef', 'JobDate']
 
 
-import bcore
-from bcore.core.kvstore import TypedList
-from bcore.utility import OrderedDict
+from bkvstore import TypedList
+from butility import OrderedDict
 
 from .base import AlfOperatorBase
 

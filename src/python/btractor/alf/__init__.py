@@ -123,8 +123,10 @@ This is the serialized result of the code above:
 
 @snippet test_examples.py alf_dynamic_modifications_result
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 from .schema import *
 from .types import *
 from .serialize import *

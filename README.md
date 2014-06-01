@@ -3,6 +3,7 @@ Build ALF descriptions procedurally using an ALF ORM, and serialize these struct
 
 ### Requirements
 
+* python 2.6 or 2.7
 * [bcore](https://github.com/Byron/bcore)
 
 ### Development Status

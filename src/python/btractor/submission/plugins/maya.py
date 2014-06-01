@@ -1,21 +1,22 @@
 #-*-coding:utf-8-*-
 """
-@package btractor.submission.components.maya
+@package btractor.submission.plugins.maya
 @brief Submission of maya scenes for rendering or for performing batch operations
 
 @note This module needs to be usable anywhere, and may not rely on being run from the nuke host application
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['MayaBatchTaskChain', 'FrameSequenceMayaBatchTaskChain',  'FrameSequenceMayaRenderTaskChain']
 
-from ...alf.generators import (
-                                    NodeGeneratorChainBase,
-                                    FrameSequenceGenerator,
-                                    MayaRenderTaskGenerator, 
-                                    MayaBatchTaskGenerator
-                              )
+import bapp
+from ...alf.generators import (NodeGeneratorChainBase,
+                              FrameSequenceGenerator,
+                              MayaRenderTaskGenerator, 
+                              MayaBatchTaskGenerator )
 
-class MayaBatchTaskChain(NodeGeneratorChainBase, Plugin):
+class MayaBatchTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
     """A chain which just generates MayaBatch commands, without support for chunking"""
     __slots__ = ()
     
@@ -29,7 +30,7 @@ class MayaBatchTaskChain(NodeGeneratorChainBase, Plugin):
 # end class MayaBatchTaskChain
 
 
-class FrameSequenceMayaBatchTaskChain(NodeGeneratorChainBase, Plugin):
+class FrameSequenceMayaBatchTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
     """A chain which comes with support for chunking"""
     __slots__ = ()
 
@@ -43,7 +44,7 @@ class FrameSequenceMayaBatchTaskChain(NodeGeneratorChainBase, Plugin):
 # end class FrameSequenceMayaBatchTaskChain
 
 
-class FrameSequenceMayaRenderTaskChain(NodeGeneratorChainBase, Plugin):
+class FrameSequenceMayaRenderTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
     """Describes a chain with frame sequence support useful for rendering with maya"""
     __slots__ = ()
     

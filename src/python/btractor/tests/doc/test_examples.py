@@ -3,13 +3,15 @@
 @package btractor.tests.doc.test_examples
 
 @copyright 2012 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = []
 
 import sys
 
-import bcore
-from butility.tests import (TestCaseBase,
+from butility.tests import (TestCase,
                             with_rw_directory)
 
 from btractor.alf import (Job,

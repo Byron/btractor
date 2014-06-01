@@ -3,8 +3,10 @@
 @package btractor.submission.base
 @brief A module with base implelementations and general utilities
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['TractorSubmitter', 'TractorJobID']
 
 import sys
@@ -13,19 +15,15 @@ import re
 import subprocess
 
 
-from ..alf import (
-                    AlfSerializer,
-                  )
-
+from ..alf import AlfSerializer
 from ..schema import tractor_schema
-from bcore.core.component import EnvironmentStackContextClient
-from bcore.utility import (
-                            LazyMixin,
-                            login_name
-                       )
+from bapp import ApplicationSettingsMixin
+from butility import (LazyMixin,
+                      login_name)
 from cStringIO import StringIO
+from butility import Path
 
-from bcore.path import Path
+
 
 class TractorJobID(int):
     """A class encapsulating a JobID as used by tractor
@@ -40,7 +38,7 @@ class TractorJobID(int):
 # end class JobID
 
 
-class TractorSubmitter(EnvironmentStackContextClient, LazyMixin):
+class TractorSubmitter(ApplicationSettingsMixin, LazyMixin):
     """A simple utility which submits JobTrees to tractor
     
     @note We will read our configuration from the kvstore, but never write it

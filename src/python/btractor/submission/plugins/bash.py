@@ -1,19 +1,20 @@
 #-*-coding:utf-8-*-
 """
-@package btractor.submission.components.bash
+@package btractor.submission.plugins.bash
 @brief Implements a chain for bash-batching, but it can possibly be used for anything
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['BashTaskChain', 'ChunkedBashTaskChain']
 
-from ...alf.generators import (
-                                NodeGeneratorChainBase,
-                                FrameSequenceGenerator,
-                                BashExecuteTaskGenerator
-                             )
+import bapp
+from ...alf.generators import (NodeGeneratorChainBase,
+                               FrameSequenceGenerator,
+                               BashExecuteTaskGenerator )
 
-class BashTaskChain(NodeGeneratorChainBase, Plugin):
+class BashTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
     """Simple bash batch commands, for now without chunking."""
     __slots__ = ()
     
@@ -27,7 +28,7 @@ class BashTaskChain(NodeGeneratorChainBase, Plugin):
 # end class MayaBatchTaskChain
 
 
-class ChunkedBashTaskChain(NodeGeneratorChainBase, Plugin):
+class ChunkedBashTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
     """Simple bash batch commands with chunking support"""
     __slots__ = ()
     

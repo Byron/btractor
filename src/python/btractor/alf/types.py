@@ -5,14 +5,14 @@
 
 @note all classes in this module refer to Alf objects. The prefix was removed to keep things more readable
 and more simple.
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['Job', 'Task', 'Cmd', 'RemoteCmd', 'Instance', 'Assign']
 
-from .base import (
-                        AlfTreeOperator,
-                        AlfOperatorBase
-                   )
+from .base import (AlfTreeOperator,
+                   AlfOperatorBase)
 
 from . import schema
 

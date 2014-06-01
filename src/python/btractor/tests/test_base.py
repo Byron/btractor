@@ -1,18 +1,20 @@
 #-*-coding:utf-8-*-
 """
-@package bcore.tests.processing.tractor
+@package btractor.tests
 @brief tests for btractor
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = []
 
-from .base import TractorTestCaseBase
+from .base import TractorTestCase
 
 from btractor.delegates import NukeTractorDelegate
 
 
-class TestDelegates(TractorTestCaseBase):
+class TestDelegates(TractorTestCase):
     """Tests for delegates of all kinds"""
     __slots__ = ()
         

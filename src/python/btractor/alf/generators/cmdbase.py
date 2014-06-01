@@ -3,37 +3,37 @@
 @package btractor.alf.generators.cmdbase
 @brief A modul for holding the tractor generator handling command execution based on processcontrol
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['TractorCmdGeneratorBase']
 
 import pickle
 import binascii
+import logging
 
-
-import bcore
-from bcore.core.component import EnvironmentStackContextClient
-from bcore.core.kvstore import (
-                                KeyValueStoreSchema,
-                                AnyKey,
-                            )
-from bcore.core.environ import file_environment
+from bkvstore import (KeyValueStoreSchema,
+                      AnyKey)
+from bprocess import file_environment
 from .base import NodeGeneratorBase
-from ..   import (
-                    Cmd,
-                    RemoteCmd,
-                    Tags
-                  )
-from bcore.processcontrol import (
-                                    PackageDataIteratorMixin,
-                                    package_schema,
-                                    ProcessControllerDelegate
-                               )
 
-log = new_service(bcore.ILog).new('btractor.submission.base')
+from ..   import (Cmd,
+                  RemoteCmd,
+                  Tags )
+
+from bprocess import (PackageDataIteratorMixin,
+                      package_schema,
+                      ProcessControllerDelegate )
+
+from bapp import (IDirectoryService, 
+                  IProjectService,
+                  ApplicationSettingsMixin)
+
+log = logging.getLogger('btractor.submission.base')
 
 
-class TractorCmdGeneratorBase(NodeGeneratorBase, EnvironmentStackContextClient, PackageDataIteratorMixin):
+class TractorCmdGeneratorBase(NodeGeneratorBase, ApplicationSettingsMixin, PackageDataIteratorMixin):
     """A utility to help creating Cmd operators which are using process control to run an executable on the farm.
     
     We also support querying all used packages in the process to associate tags with them.
@@ -51,7 +51,7 @@ class TractorCmdGeneratorBase(NodeGeneratorBase, EnvironmentStackContextClient, 
     read_from_stdin_argument = 'read-from-stdin'
     
     ## The environment variable which will keep the serialized data for later consumption in-process
-    data_storage_env_var = 'BCORE_TRACTOR_CUSTOM_DATA'
+    data_storage_env_var = 'BTRACTOR_CUSTOM_DATA'
     
     ## -- End Constants -- @}
     
@@ -159,14 +159,15 @@ class TractorCmdGeneratorBase(NodeGeneratorBase, EnvironmentStackContextClient, 
         
         # Make sure we use the enviroment at path (if available) to find the executable
         # The location of the executable is not part of the equation yet
+        # TOOD: REVIEW !There might be much better ways now
         with file_environment(*paths):
             # We assume services ordered from most specialised to most general, which is exactly what we want
             # here
             executable = None
             bases = list()
-            for svc in services(bcore.IDirectoryService):
+            for svc in services(IDirectoryService):
                 try:
-                    base = svc.path(bcore.IProjectService.PATH_EXECUTABLES)
+                    base = svc.path(IProjectService.PATH_EXECUTABLES)
                     bases.append(base)
                     executable = base / self.cmd_id
                 except ValueError:

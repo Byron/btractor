@@ -5,9 +5,11 @@
 
 @note You have to import the respective sub-packages for actual features
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 
-from .components import *
+from .plugins import *
 from .interfaces import *
 from .delegates import *

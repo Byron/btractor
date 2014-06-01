@@ -4,21 +4,19 @@
 @brief Submission of nuke scripts
 
 @note This module needs to be usable anywhere, and may not rely on being run from the nuke host application
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['NukeRenderTaskGenerator']
 
 
 from .cmdbase import TractorCmdGeneratorBase
 from ...delegates import NukeTractorDelegate
-from .types import (
-                        FrameSequenceGenerator,
-                        JobGenerator,
-                   )
-from .. import (
-                    Task,
-                    Cmd,
-                  )
+from .types import (FrameSequenceGenerator,
+                    JobGenerator)
+from .. import (Task,
+                Cmd)
 import copy
 
 class NukeRenderTaskGenerator(TractorCmdGeneratorBase):

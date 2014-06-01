@@ -1,14 +1,16 @@
 #-*-coding:utf-8-*-
 """
-@package bcore.tests.processing.tractor.base
+@package btractor.tests.base
 @brief Base classes and utilities for tractor tests
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
-__all__ = ['TractorTestCaseBase']
+from __future__ import unicode_literals
+__all__ = ['TractorTestCase']
 
 
-from bcore.tests import TestCaseBase
+from butility.tests import TestCase
 
 
 
@@ -17,14 +19,14 @@ from bcore.tests import TestCaseBase
 # ------------------------------------------------------------------------------
 ## @{
 
-class TractorTestCaseBase(TestCaseBase):
+class TractorTestCase(TestCase):
     """A test case with some maya utilities"""
     __slots__ = ()
 
     ## Subdirectory to the ./fixtures root
     fixture_subdir = 'processing/tractor'
 
-# end class TractorTestCaseBase
+# end class TractorTestCase
 
 ## -- End Classes -- @}
 

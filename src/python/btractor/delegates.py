@@ -3,8 +3,10 @@
 @package btractor.delegates
 @brief Contains delegates suitable for use with tractor and particular applications
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['TractorDelegateMixin', 'NukeTractorDelegate', 'MayaBatchDelegate', 'KatanaTractorDelegate']
 
 import re
@@ -15,21 +17,19 @@ import json
 import urllib2
 import logging
 import select
+import logging
 
-import bcore
-from bcore.utility import DictObject
+from butility import DictObject
 
 
-from bcore.processcontrol import (
-                                    ProcessControllerDelegate,
-                                    MayaProcessControllerDelegate,
-                                    KatanaControllerDelegate
-                                )
+from bprocess import (ProcessControllerDelegate,
+                      MayaProcessControllerDelegate,
+                      KatanaControllerDelegate )
 
 from .alf.generators import TractorCmdGeneratorBase
 
 
-log = new_service(bcore.ILog).new('btractor.delegates')
+log = logging.getLogger('btractor.delegates')
 
 
 class TractorDelegateMixin(object):

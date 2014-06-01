@@ -1,41 +1,38 @@
 #-*-coding:utf-8-*-
 """
-@package bcore.tests.processing.tractor.submission
+@package btractor.tests.submission
 @brief tests for btractor.submission
 
 @note we use this module to test all of the submission implementations roughly
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = []
 
 import os
 import sys
 import subprocess
 
-from bcore.tests import (
-                        TestCaseBase,
-                        with_rw_directory
-                      )
+from butility.tests import (TestCase,
+                            with_rw_directory)
 
 
-from btractor.alf import (
-                                            Job,
-                                            AlfSerializer
-                                       )
+from btractor.alf import (Job,
+                          AlfSerializer)
 
 from btractor.delegates import NukeTractorDelegate
-from bcore.processcontrol import PostLaunchProcessInformation
 
 from btractor.alf.generators import *
 from btractor.submission import *
 
 # Just to test * imports
-from btractor.submission.components.maya import *
-from btractor.submission.components.nuke import *
-from btractor.submission.components.bash import *
+from btractor.submission.plugins.maya import *
+from btractor.submission.plugins.nuke import *
+from btractor.submission.plugins.bash import *
 
 
-class TestSubmission(TestCaseBase):
+class TestSubmission(TestCase):
     """Tests for nuke submission types"""
     __slots__ = ()
     

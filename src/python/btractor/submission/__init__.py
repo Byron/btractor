@@ -3,6 +3,8 @@
 @package btractor.submission
 @brief Implementations for submission scripts for individual host-apps
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 from .base import *

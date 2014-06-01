@@ -1,9 +1,11 @@
 #-*-coding:utf-8-*-
 """
-@package bcore.tests.processing.tractor.submission
+@package btractor.tests.submission
 @brief Tests for btractor.submission
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = []
 

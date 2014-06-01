@@ -3,23 +3,23 @@
 @package btractor.submission.gui.properties
 @brief Widgets dealing with properties for ChainGenerators
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['GeneratorPropertiesWidgetBase', 'FrameSequenceGeneratorPropertiesWidget', 'JobGeneratorPropertiesWidget',
            'MayaRenderPropertiesWidget', 'MayaBatchPropertiesWidget']
 
 from PySide import QtGui
 
-import bcore
-from bcore.path import Path
-from btractor.alf.generators import (
-                                                    JobGenerator,
-                                                    MultiJobGenerator,
-                                                    FrameSequenceGenerator,
-                                                    MayaBatchTaskGenerator,
-                                                    MayaRenderTaskGenerator,
-                                                    ExecuteTaskGenerator
-                                                )
+import bapp
+from butility import Path
+from btractor.alf.generators import (JobGenerator,
+                                     MultiJobGenerator,
+                                     FrameSequenceGenerator,
+                                     MayaBatchTaskGenerator,
+                                     MayaRenderTaskGenerator,
+                                     ExecuteTaskGenerator)
 from . import ui
 
 # ==============================================================================
@@ -269,7 +269,7 @@ for widget in ( FrameSequenceGeneratorPropertiesWidget,
                 MayaRenderPropertiesWidget,
                 MultiTaskPropertiesWidget,  # must come after frameSequence widget
                 ExecutorPropertiesWidget,):
-    bcore.environment.register(widget)
+    bapp.main().context().register(widget)
 # end for each widget
 
 ## -- End ChainWidgets -- @}

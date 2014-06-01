@@ -3,14 +3,16 @@
 @package btractor.alf.generators.executor
 @brief A generator for jobs executing anything on the farm with stdin piping support
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['BashExecuteTaskGenerator', 'ExecuteTaskGenerator']
 
-from bcore.core.kvstore import KeyValueStoreSchema
+from bkvstore import KeyValueStoreSchema
 from .cmdbase import TractorCmdGeneratorBase
 from .. import Task
-from bcore.utility import DictObject
+from butility import DictObject
 
 class ExecuteTaskGenerator(TractorCmdGeneratorBase):
     """Create a task which can feed any input to stdin of a command

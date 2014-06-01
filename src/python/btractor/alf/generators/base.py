@@ -3,28 +3,27 @@
 @package btractor.alf.generators.base
 @brief A package containing task tree generators and respective base classes
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['NodeGeneratorBase', 'SequenceGeneratorBase', 'ValueSequenceGeneratorBase', 
            'NodeGeneratorContextStore', 'NodeGeneratorChainBase']
 
-import bcore
 
-from bcore.core.kvstore import (
-                                KeyValueStoreSchema,
-                                KeyValueStoreModifier,
-                                KeyValueStoreModifierDiffDelegate,
-                                KeyValueStoreSchemaValidator,
-                                ValidateSchemaMergeDelegate,
-                            )
+from bkvstore import (KeyValueStoreSchema,
+                      KeyValueStoreModifier,
+                      KeyValueStoreModifierDiffDelegate,
+                      KeyValueStoreSchemaValidator,
+                      ValidateSchemaMergeDelegate)
 
-from bcore.core.diff import (
-                            TwoWayDiff,
-                            AdditiveMergeDelegate,
-                            RootKey
-                        )
+from bdiff import (TwoWayDiff,
+                   AdditiveMergeDelegate,
+                   RootKey)
 
-from bcore.utility import GraphIteratorBase
+from butility import (GraphIterator,
+                      abstractmethod,
+                      Meta)
 
 
 
@@ -74,7 +73,7 @@ class NodeGeneratorSchemaValidator(KeyValueStoreSchemaValidator):
 # end class NodeGeneratorSchemaValidator
 
 
-class _NodeGeneratorMeta(bcore.MetaBase):
+class _NodeGeneratorMeta(Meta):
     """A meta-class to auomatically generate certain fields for NodeGenerators"""
     
     def __new__(metacls, name, bases, clsdict):
@@ -109,7 +108,7 @@ class _NodeGeneratorMeta(bcore.MetaBase):
 # end class _NodeGeneratorMeta
 
 
-class NodeGeneratorBase(GraphIteratorBase):
+class NodeGeneratorBase(GraphIterator):
     """base class for all task generators, providing basic functionality to subclasses.
     
     A generator, as the name suggests, creates a task hierarchy to define a particular kind of job, which is
@@ -231,7 +230,7 @@ class NodeGeneratorBase(GraphIteratorBase):
         @param begin if True, we are beginning the generation of tasks, otherwise we have ended it
         @note subclasses should call this implementation"""
     
-    @bcore.abstractmethod
+    @abstractmethod
     def _tree_iterator(self, context):
         """A method producing a task based on the given context
         @param context a NodeGeneratorContextStore instance to query the values according to your static AND dynamic 
@@ -447,7 +446,7 @@ class SequenceGeneratorBase(NodeGeneratorBase):
     ## @name Interface
     # @{
     
-    @bcore.abstractmethod
+    @abstractmethod
     def chunks(self, context):
         """@return a list of chunks in a format depending on the subclass implementation.
         @param context static fields used to configure the chunk range

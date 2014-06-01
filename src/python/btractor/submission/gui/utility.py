@@ -3,15 +3,17 @@
 @package btractor.submission.gui.utiliy
 @brief Some utility types
 
-@copyright 2013 Sebastian Thiel
+@author Sebastian Thiel
+@copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
+from __future__ import unicode_literals
 __all__ = ['TractorSubmitoolGUICommand', 'TractorSubmissionWindow']
 
 
 from PySide import QtGui
-from bcore.gui.cmd import PySideGUICommandBase
+from bqt import PySideGUICommandBase
 from .window_ui import Ui_SubmitoolWindow
-from bcore.path import Path
+from butility import Path
 
 class TractorSubmissionWindow(QtGui.QMainWindow):
     """A main window for tractor submission, using a TractorSubmissionController automatically"""
