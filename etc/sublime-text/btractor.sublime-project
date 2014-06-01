@@ -3,7 +3,12 @@
 	[
 		{
 			"follow_symlinks": true,
-			"path": "../../"
+			"path": "../../",
+			"folder_exclude_patterns" : [
+				".git", 
+				"doc",
+				"pages"
+			]
 		}
 	]
 }

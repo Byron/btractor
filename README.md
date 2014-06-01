@@ -3,6 +3,8 @@ Build ALF descriptions procedurally using an ALF ORM, and serialize these struct
 
 ### Requirements
 
-* bcore
-* [tractor-blade]
-  * Optional, only for submission
+* [bcore](https://github.com/Byron/bcore)
+
+### Development Status
+
+The code was used in my previous company, and is about to be cleaned up and merged with facilities provided by bcore. Currently the code might not be in an operational state.
