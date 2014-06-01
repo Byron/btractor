@@ -9,7 +9,7 @@
 from __future__ import unicode_literals
 from butility.future import str
 
-__all__ = ['AlfOperatorMeta', 'AlfOperatorBase', 'AlfTreeOperator']
+__all__ = ['AlfOperatorMeta', 'AlfOperator', 'AlfTreeOperator']
 
 from butility import (GraphIterator,
                       Meta)
@@ -114,7 +114,7 @@ class AlfOperatorMeta(Meta):
 # end class AlfOperatorMeta
 
 
-class AlfOperatorBase(object):
+class AlfOperator(object):
     """A base class to help defininig operators"""
     __slots__ = ()
     __metaclass__ = AlfOperatorMeta
@@ -197,10 +197,10 @@ class AlfOperatorBase(object):
         
     ## -- End Subclass Overridable -- @}
 
-# end class AlfOperatorBase
+# end class AlfOperator
 
 
-class AlfTreeOperator(AlfOperatorBase, GraphIterator):
+class AlfTreeOperator(AlfOperator, GraphIterator):
     """An operator that sets up a tree of items.
     As those items can refer to each other, there is a relation between id and refersto tags of commands and/or
     tasks"""

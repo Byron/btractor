@@ -28,7 +28,7 @@ from bprocess import (ProcessControllerDelegate,
                       MayaProcessControllerDelegate,
                       KatanaControllerDelegate )
 
-from .alf.generators import TractorCmdGeneratorBase
+from .alf.generators import TractorCmdGenerator
 
 
 log = logging.getLogger('btractor.delegates')
@@ -221,7 +221,7 @@ class TractorDelegateMixin(object):
         
     def handle_argument(self, arg, kvstore):
         """Parses own arguments"""
-        if arg == TractorCmdGeneratorBase.read_from_stdin_argument:
+        if arg == TractorCmdGenerator.read_from_stdin_argument:
             type(self)._read_stdin = True
         else:
             return super(TractorDelegateMixin, self).handle_argument(arg, kvstore)
@@ -236,7 +236,7 @@ class TractorDelegateMixin(object):
         # any other queries, and we block as well. Deadlock ... .
         if self._read_stdin:
             log.debug("Reading data from stdin to provide it to upcoming process")
-            env[TractorCmdGeneratorBase.data_storage_env_var] = sys.stdin.read()
+            env[TractorCmdGenerator.data_storage_env_var] = sys.stdin.read()
         #end handle stdin
         
         data = self._query_blade_information()

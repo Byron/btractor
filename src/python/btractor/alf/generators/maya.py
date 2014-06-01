@@ -15,7 +15,7 @@ __all__ = ['MayaBatchTaskGenerator', 'MayaRenderTaskGenerator']
 
 from bkvstore import KeyValueStoreSchema
 
-from .cmdbase import TractorCmdGeneratorBase
+from .cmdbase import TractorCmdGenerator
 from .types import (JobGenerator,
                     FrameSequenceGenerator)
 from .. import (Task,
@@ -25,7 +25,7 @@ import copy
 from butility import Path
 
 
-class MayaTaskBase(TractorCmdGeneratorBase):
+class MayaTaskBase(TractorCmdGenerator):
     """Provides general implementations and commmon variables"""
     __slots__ = ()
     
@@ -38,7 +38,7 @@ class MayaTaskBase(TractorCmdGeneratorBase):
     
     ## -- End Configuration -- @}
     
-    variable_field_schema = TractorCmdGeneratorBase._merge_schemas((JobGenerator.variable_field_schema,
+    variable_field_schema = TractorCmdGenerator._merge_schemas((JobGenerator.variable_field_schema,
                                                                    FrameSequenceGenerator.variable_field_schema))
     
     

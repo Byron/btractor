@@ -158,7 +158,7 @@ class TractorGeneratorChainPropertiesWidget(QtGui.QWidget):
         GUI will be initialized from the given context's values based on known Generators found in the chain.
         Generators are visualized by mapping respective GUI elements to them, which in turn are used to 
         write their values back into the data set.
-        @param chain a NodeGeneratorChainBase compatible instance, or None which is when this instance will 
+        @param chain a NodeGeneratorChain compatible instance, or None which is when this instance will 
         be cleared.
         @param context KeyValueStore retrieved from the given chain, or None to clear this instance.
         @return the chain's context we are representing, as retrieved by chain.default_context()"""

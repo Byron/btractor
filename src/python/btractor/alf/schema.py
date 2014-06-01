@@ -15,7 +15,7 @@ __all__ = ['Assignments', 'Tasks', 'Tags', 'ReturnCodes', 'Commands', 'TaskTitle
 from bkvstore import TypedList
 from butility import OrderedDict
 
-from .base import AlfOperatorBase
+from .base import AlfOperator
 
 
 # ==============================================================================
@@ -164,7 +164,7 @@ class Commands(TypedList):
     __slots__ = ()
     
     
-class RefBase(object):
+class Ref(object):
     """A simple type which holds the id of the task or command it refers to, and the instance 
     once the pointer was resolved"""
     __slots__ = ( 
@@ -180,17 +180,17 @@ class RefBase(object):
     def __str__(self):
         return "%s(id='%s')" % (type(self).__name__, self.id)
 
-# end class RefBase
+# end class Ref
 
 
-class TaskTitleRef(RefBase):
+class TaskTitleRef(Ref):
     """A reference to a Task (and only a Task), where id specifies a task Title"""
     __slots__ = ()
 
 # end class TaskTitleRef 
 
 
-class IDRef(RefBase):
+class IDRef(Ref):
     """A reference to the ID of a Task or a Command"""
     __slots__ = ()
 
@@ -218,7 +218,7 @@ class AnyType(object):
 # ------------------------------------------------------------------------------
 ## @{
 
-class AlfSchemaBase(object):
+class AlfSchema(object):
     """A base class for alf related schemas"""
     
     ## A schema defining the options we support. Those are entirely optional.
@@ -232,11 +232,11 @@ class AlfSchemaBase(object):
     # @warning order matters here, therefore instantiate an ordered dict and set values one by one ! 
     mandatory_options = None
     
-# end class AlfSchemaBase
+# end class AlfSchema
 
 
 # NOTE: Have to put next two classes here to suit code dependencies
-class JobDateSchema(AlfSchemaBase):
+class JobDateSchema(AlfSchema):
     """A schema for the job date"""
     __slots__ = ()
     
@@ -248,7 +248,7 @@ class JobDateSchema(AlfSchemaBase):
 # end class JobDateSchema
 
 
-class JobDate(AlfOperatorBase):
+class JobDate(AlfOperator):
     """An Alfred Job date. Hours are measured in 24, not in 12 as you cannot specify AM/PM
     
     ## Examples
@@ -264,7 +264,7 @@ class JobDate(AlfOperatorBase):
 # end class JobDate
 
 
-class Job(AlfSchemaBase):
+class Job(AlfSchema):
     """A schema for a Job operator"""
     __slots__ = ()
     
@@ -288,7 +288,7 @@ class Job(AlfSchemaBase):
 # end class Job
 
 
-class Task(AlfSchemaBase):
+class Task(AlfSchema):
     """A schema for the Task operator"""
     __slots__ = ()
     
@@ -307,7 +307,7 @@ class Task(AlfSchemaBase):
 # end class Task
 
 
-class Cmd(AlfSchemaBase):
+class Cmd(AlfSchema):
     """A schema for the operator class"""
     options = OrderedDict()
     options['msg']         = str
@@ -328,7 +328,7 @@ class Cmd(AlfSchemaBase):
 
 # end Cmd Schema
 
-class Instance(AlfSchemaBase):
+class Instance(AlfSchema):
     """A schema for the Instance operator class"""
     __slots__ = ()
 
@@ -336,7 +336,7 @@ class Instance(AlfSchemaBase):
 
 # end class Instance
 
-class Assign(AlfSchemaBase):
+class Assign(AlfSchema):
     """A schema for Assign operator"""
     __slots__ = ()
     

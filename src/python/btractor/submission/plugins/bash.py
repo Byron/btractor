@@ -10,11 +10,11 @@ from __future__ import unicode_literals
 __all__ = ['BashTaskChain', 'ChunkedBashTaskChain']
 
 import bapp
-from ...alf.generators import (NodeGeneratorChainBase,
+from ...alf.generators import (NodeGeneratorChain,
                                FrameSequenceGenerator,
                                BashExecuteTaskGenerator )
 
-class BashTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
+class BashTaskChain(NodeGeneratorChain, bapp.plugin_type()):
     """Simple bash batch commands, for now without chunking."""
     __slots__ = ()
     
@@ -28,7 +28,7 @@ class BashTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
 # end class MayaBatchTaskChain
 
 
-class ChunkedBashTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
+class ChunkedBashTaskChain(NodeGeneratorChain, bapp.plugin_type()):
     """Simple bash batch commands with chunking support"""
     __slots__ = ()
     

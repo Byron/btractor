@@ -132,7 +132,7 @@ class TestGenerators(TractorTestCase):
         self.failUnlessRaises(StopIteration, jgenit.next)
         
         
-        chain = NodeGeneratorChainBase().set_head(jgen)
+        chain = NodeGeneratorChain().set_head(jgen)
         assert chain.head() is jgen
         assert chain.tail() is not jgen and chain.tail() is not None
         other_gen = JobGenerator()

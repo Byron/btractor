@@ -25,10 +25,10 @@ from .schema import (JobDate,
                      Tags,
                      IDRef, 
                      TaskTitleRef,
-                     RefBase,
+                     Ref,
                      ReturnCodes)
 
-class AlfSerializerBase(object):
+class Serializer(object):
     """A base to implement the algorithm to serialize an Alf tree into a stream.
     
     Subclasses must implement a callback to actually write characters into the stream.
@@ -140,7 +140,7 @@ class AlfSerializerBase(object):
     
     def serialize(self, node, resolve_references=True):
         """Serialize the given tree into the our stream
-        @param node an instance of type AlfTreeOperator or AlfOperatorBase
+        @param node an instance of type AlfTreeOperator or AlfOperator
         @param resolve_references by default, we resolve reference prio to serialization and may thus change the
         input tree operator.
         @note calls resolve_references on the tree
@@ -188,7 +188,7 @@ class AlfSerializerBase(object):
 # end class BaseSerializer
 
 
-class AlfSerializer(AlfSerializerBase):
+class AlfSerializer(Serializer):
     """A serializer to produce alf formatted streams"""
     __slots__ = (
                     '_prefix'   # prefix for every line we print 
@@ -241,7 +241,7 @@ class AlfSerializer(AlfSerializerBase):
             value = "%s %s %s:%s" % (value.month, value.day, value.hour, value.minute)
         elif isinstance(value, list):
             value = ', '.join(str(val) for val in value)
-        elif isinstance(value, RefBase):
+        elif isinstance(value, Ref):
             value = value.id
         elif isinstance(node, Cmd) and attr == 'appname':
             # needs special handling, as args is a variables argument list we have parsed ourselves

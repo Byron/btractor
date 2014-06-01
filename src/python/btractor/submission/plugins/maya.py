@@ -11,12 +11,12 @@ from __future__ import unicode_literals
 __all__ = ['MayaBatchTaskChain', 'FrameSequenceMayaBatchTaskChain',  'FrameSequenceMayaRenderTaskChain']
 
 import bapp
-from ...alf.generators import (NodeGeneratorChainBase,
+from ...alf.generators import (NodeGeneratorChain,
                               FrameSequenceGenerator,
                               MayaRenderTaskGenerator, 
                               MayaBatchTaskGenerator )
 
-class MayaBatchTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
+class MayaBatchTaskChain(NodeGeneratorChain, bapp.plugin_type()):
     """A chain which just generates MayaBatch commands, without support for chunking"""
     __slots__ = ()
     
@@ -30,7 +30,7 @@ class MayaBatchTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
 # end class MayaBatchTaskChain
 
 
-class FrameSequenceMayaBatchTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
+class FrameSequenceMayaBatchTaskChain(NodeGeneratorChain, bapp.plugin_type()):
     """A chain which comes with support for chunking"""
     __slots__ = ()
 
@@ -44,7 +44,7 @@ class FrameSequenceMayaBatchTaskChain(NodeGeneratorChainBase, bapp.plugin_type()
 # end class FrameSequenceMayaBatchTaskChain
 
 
-class FrameSequenceMayaRenderTaskChain(NodeGeneratorChainBase, bapp.plugin_type()):
+class FrameSequenceMayaRenderTaskChain(NodeGeneratorChain, bapp.plugin_type()):
     """Describes a chain with frame sequence support useful for rendering with maya"""
     __slots__ = ()
     

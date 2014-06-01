@@ -13,11 +13,11 @@ from butility.future import str
 __all__ = ['BashExecuteTaskGenerator', 'ExecuteTaskGenerator']
 
 from bkvstore import KeyValueStoreSchema
-from .cmdbase import TractorCmdGeneratorBase
+from .cmdbase import TractorCmdGenerator
 from .. import Task
 from butility import DictObject
 
-class ExecuteTaskGenerator(TractorCmdGeneratorBase):
+class ExecuteTaskGenerator(TractorCmdGenerator):
     """Create a task which can feed any input to stdin of a command
     
     @note the command substitutes everything available in the context into your commandline, i.e. -file {job.file}

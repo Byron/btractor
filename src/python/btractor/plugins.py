@@ -14,20 +14,20 @@ import os
 import bapp
 from .interfaces import (ITractorProcessDataProvider,
                          ITractorNodeGeneratorChainProvider )
-from .alf.generators import TractorCmdGeneratorBase
-from .alf.generators import NodeGeneratorChainBase
+from .alf.generators import TractorCmdGenerator
+from .alf.generators import NodeGeneratorChain
 from bkvstore import KeyValueStoreProvider
 
 
 class TractorProcessDataProvider(ITractorProcessDataProvider, bapp.plugin_type()):
-    """Implements the data provider interface, works together with TractorDelegateMixin and TractorCmdGeneratorBase"""
+    """Implements the data provider interface, works together with TractorDelegateMixin and TractorCmdGenerator"""
     __slots__ = ()
     
     def data(self):
-        evar = TractorCmdGeneratorBase.data_storage_env_var
+        evar = TractorCmdGenerator.data_storage_env_var
         if evar not in os.environ:
             return None
-        return TractorCmdGeneratorBase.deserialize_data(os.environ[evar])
+        return TractorCmdGenerator.deserialize_data(os.environ[evar])
         
     def set_progress(self, progress):
         print "TR_PROGRESS %03i%%"
@@ -46,7 +46,7 @@ class TractorNodeGeneratorChainProvider(ITractorNodeGeneratorChainProvider, bapp
     __slots__ = ()
 
     def chains(self):
-        return bapp.main().context().new_instance(NodeGeneratorChainBase)
+        return bapp.main().context().new_instance(NodeGeneratorChain)
 
 # end class TractorNodeGeneratorChainProvider
 

@@ -14,7 +14,7 @@ from butility.future import str
 __all__ = ['NukeRenderTaskGenerator']
 
 
-from .cmdbase import TractorCmdGeneratorBase
+from .cmdbase import TractorCmdGenerator
 from ...delegates import NukeTractorDelegate
 from .types import (FrameSequenceGenerator,
                     JobGenerator)
@@ -22,7 +22,7 @@ from .. import (Task,
                 Cmd)
 import copy
 
-class NukeRenderTaskGenerator(TractorCmdGeneratorBase):
+class NukeRenderTaskGenerator(TractorCmdGenerator):
     """A task to perform nuke rendering using process control.
     
     We take care of building a commandline suitable for rendering a nuke scene in a certain frame range
@@ -41,7 +41,7 @@ class NukeRenderTaskGenerator(TractorCmdGeneratorBase):
     limit_nuke_interactive = 'nuke_interactive'
     
     ## We support frame ranges and a single nuke file
-    variable_field_schema = TractorCmdGeneratorBase._merge_schemas((JobGenerator.variable_field_schema,
+    variable_field_schema = TractorCmdGenerator._merge_schemas((JobGenerator.variable_field_schema,
                                                                    FrameSequenceGenerator.variable_field_schema))
     
     ## -- End Configuration -- @}

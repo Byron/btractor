@@ -11,12 +11,12 @@ __all__ = ['NukeRenderTasksChain']
 
 
 import bapp
-from ...alf.generators import (NodeGeneratorChainBase,
+from ...alf.generators import (NodeGeneratorChain,
                                FrameSequenceGenerator,
                                NukeRenderTaskGenerator )
 
 
-class NukeRenderTasksChain(NodeGeneratorChainBase, bapp.plugin_type()):
+class NukeRenderTasksChain(NodeGeneratorChain, bapp.plugin_type()):
     """Represents a generator chain which is preconfigured to support frame chunking as and simple rendering
     of all enabled write nodes in a script.
     

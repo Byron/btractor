@@ -51,7 +51,7 @@ class ITractorProcessDataProvider(Interface):
 
 
 class ITractorNodeGeneratorChainProvider(Interface):
-    """An interface allowing to obtain a list of Plugin-Instances deriving from the NodeGeneratorChainBase type
+    """An interface allowing to obtain a list of Plugin-Instances deriving from the NodeGeneratorChain type
     @note Override this implementation if you need anything more specific than all services that implement this
     base type"""
     __slots__ = ()
@@ -62,7 +62,7 @@ class ITractorNodeGeneratorChainProvider(Interface):
     
     @abstractmethod
     def chains(self):
-        """@return a list of chains implementing the NodeGeneratorChainBase interface"""
+        """@return a list of chains implementing the NodeGeneratorChain interface"""
     
     ## -- End Interface -- @}
 

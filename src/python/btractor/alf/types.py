@@ -14,7 +14,7 @@ from butility.future import str
 __all__ = ['Job', 'Task', 'Cmd', 'RemoteCmd', 'Instance', 'Assign']
 
 from .base import (AlfTreeOperator,
-                   AlfOperatorBase)
+                   AlfOperator)
 
 from . import schema
 
@@ -41,7 +41,7 @@ class Task(AlfTreeOperator):
 # end class Task
 
 
-class Cmd(AlfOperatorBase):
+class Cmd(AlfOperator):
     """A Command representation, see http://renderman.pixar.com/resources/current/tractor/scriptingOperators.html#cmd
     
     Examples
@@ -88,7 +88,7 @@ class RemoteCmd(Cmd):
 # end class RemoteCmd
 
 
-class Instance(AlfOperatorBase):
+class Instance(AlfOperator):
     """A instance representation, see http://renderman.pixar.com/resources/current/tractor/scriptingOperators.html#instance"""
     __slots__ = ()
     
@@ -98,7 +98,7 @@ class Instance(AlfOperatorBase):
 # end class Instance
 
 
-class Assign(AlfOperatorBase):
+class Assign(AlfOperator):
     """A variable assignment for alf-scripts, see http://renderman.pixar.com/resources/current/tractor/scriptingOperators.html#assign.
     Stored values may be any string-convertible instance.
     As a special feature, we call 'value_string' value, which is the actual python value.

@@ -8,7 +8,7 @@
 """
 from __future__ import unicode_literals
 __all__ = ['NodeGeneratorBase', 'SequenceGeneratorBase', 'ValueSequenceGeneratorBase', 
-           'NodeGeneratorContextStore', 'NodeGeneratorChainBase']
+           'NodeGeneratorContextStore', 'NodeGeneratorChain']
 
 
 from bkvstore import (KeyValueStoreSchema,
@@ -334,7 +334,7 @@ class NodeGeneratorBase(GraphIterator):
 # end class NodeGeneratorBase
 
 
-class NodeGeneratorChainBase(object):
+class NodeGeneratorChain(object):
     """A simple utility type which represents a chain of generators. A chain has a head and a tail.
     Subtypes are the main item expected by the generator framework, as it is able to maintain a complex
     and dynamically generated chain of generators in one package
@@ -388,7 +388,7 @@ class NodeGeneratorChainBase(object):
         
     ## -- End Interface -- @}    
 
-# end class NodeGeneratorChainBase
+# end class NodeGeneratorChain
 
 
 class SequenceGeneratorBase(NodeGeneratorBase):

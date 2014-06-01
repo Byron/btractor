@@ -7,7 +7,7 @@
 @copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
 from __future__ import unicode_literals
-__all__ = ['TractorCmdGeneratorBase']
+__all__ = ['TractorCmdGenerator']
 
 import pickle
 import binascii
@@ -34,7 +34,7 @@ from bapp import (IDirectoryService,
 log = logging.getLogger('btractor.submission.base')
 
 
-class TractorCmdGeneratorBase(NodeGeneratorBase, ApplicationSettingsMixin, PackageDataIteratorMixin):
+class TractorCmdGenerator(NodeGeneratorBase, ApplicationSettingsMixin, PackageDataIteratorMixin):
     """A utility to help creating Cmd operators which are using process control to run an executable on the farm.
     
     We also support querying all used packages in the process to associate tags with them.
