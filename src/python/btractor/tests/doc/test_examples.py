@@ -25,7 +25,7 @@ from btractor.alf import (Job,
                           AlfSerializer)
 
 
-class TractorAlfTests(TestCaseBase):
+class TractorAlfTests(TestCase):
     """Tests alf structure setup and usage"""
     __slots__ = ()
     

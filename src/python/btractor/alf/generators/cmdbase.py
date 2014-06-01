@@ -13,6 +13,7 @@ import pickle
 import binascii
 import logging
 
+import bapp
 from bkvstore import (KeyValueStoreSchema,
                       AnyKey)
 from bprocess import file_environment
@@ -165,7 +166,7 @@ class TractorCmdGeneratorBase(NodeGeneratorBase, ApplicationSettingsMixin, Packa
             # here
             executable = None
             bases = list()
-            for svc in services(IDirectoryService):
+            for svc in bapp.main().context().instances(IDirectoryService):
                 try:
                     base = svc.path(IProjectService.PATH_EXECUTABLES)
                     bases.append(base)

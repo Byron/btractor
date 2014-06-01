@@ -8,6 +8,8 @@
 @copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
 from __future__ import unicode_literals
+from butility.future import str
+
 __all__ = []
 
 import os
@@ -30,6 +32,8 @@ from btractor.submission import *
 from btractor.submission.plugins.maya import *
 from btractor.submission.plugins.nuke import *
 from btractor.submission.plugins.bash import *
+
+from bapp.tests import with_application
 
 
 class TestSubmission(TestCase):
@@ -57,6 +61,7 @@ class TestSubmission(TestCase):
         m = TractorSubmitter.re_job_id.search(submit_success)
         assert m and int(m.group(0)) == 1307140009 
     
+    @with_application(from_file=__file__)
     def test_nuke_submission(self):
         """just run the nuke submission code"""
         nkjob = NukeRenderTasksChain().prepend_head(JobGenerator())
@@ -87,6 +92,7 @@ class TestSubmission(TestCase):
         # NOTE: actually it doesn't create a job, as a service key is missing
         # assert TractorSubmitter().submit(job, paused=True) != 0
     
+    @with_application(from_file=__file__)
     def test_maya_batch_submission(self):
         """Check if maya batch submission can generally work using a command feed from stdin"""
         chain = MayaBatchTaskChain().prepend_head(JobGenerator())

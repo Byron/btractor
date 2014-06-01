@@ -7,6 +7,8 @@
 @copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
 from __future__ import unicode_literals
+from butility.future import str
+
 __all__ = ['Assignments', 'Tasks', 'Tags', 'ReturnCodes', 'Commands', 'TaskTitleRef', 'IDRef', 'JobDate']
 
 

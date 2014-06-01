@@ -9,6 +9,8 @@ and more simple.
 @copyright [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl.html)
 """
 from __future__ import unicode_literals
+from butility.future import str
+
 __all__ = ['Job', 'Task', 'Cmd', 'RemoteCmd', 'Instance', 'Assign']
 
 from .base import (AlfTreeOperator,
