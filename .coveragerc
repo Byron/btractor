@@ -1,0 +1,18 @@
+[run]
+source = btractor
+
+; to make nosetests happy
+[report]
+omit = 
+	*/yaml*
+	*/bkvstore/*
+	*/bapp/*
+	*/bdiff/*
+	*/bprocess/*
+	*/bproperty/*
+	*/btransaction/*
+	*/butility/*
+	*/json/*
+	*/tests/*
+    */python?.?/*
+    */site-packages/nose/*
